@@ -5,13 +5,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Draw a card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
+
+  
 </head>
 <body>
-  <div>
-    <h1>Draw a card</h1>
+  <div class="enter-container">
+    <div class="enter-content-wrapper">
+      <p class="enter-title">Witamy w symulatorze losowania kart!</p>
+      <p class="enter-text">Losowanie odbywa się za pomocą przycisku zrobionego na wzór "Pokeball'a" występującego w bajce <span class="redColor">Pokemon</span>. W "grze" istnieje możliwość zmiany trybu losowanej karty za pomocą przycisku <span class="redColor">switch</span> znajdującego się w prawym górnym rogu. W domyślnym trybie karta wyświetla tylko i wyłącznie własną pozycję w talii, natomiast drugi tryb jest bardziej nawiązujący do bajki.</p>
+      <button id="enter-start-button" class="enter-start-button">Graj</button>
+    </div>
+
+    <div class="enter-circle"></div>
   </div>
 
+  <div class="container">
+    <div class="poke-switch-wrapper">
+      <label class="switch-mode">
+        <input type="checkbox" role="switch" id="switch-mode__checkbox">
+        <span class="slider round"></span>
+      </label>
+
+      <p class="switch-mode-title">Zmień<br>tryb</p>
+    </div>
+    <div class="card-container"></div>
+    <div>
+      <button id="draw-card" class="pokeball-btn"><span class="circle"></span></button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <script src="./js/animations.js"></script>
   <script src="./js/cards.js"></script>
 </body>
 </html>
