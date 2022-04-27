@@ -8,12 +8,81 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
+.redColor {
+  color: #fb0d3e;
+}
+
+.enter-container {
+  background: #000;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+.enter-content-wrapper {
+  text-align: center;
+}
+
+.enter-container .enter-title {
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.enter-container .enter-text {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 50px;
+  font-weight: 200;
+  max-width: 870px;
+}
+
+.enter-container .enter-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #000;
+  transform: translate(-50%, -50%) scale(9);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+}
+
+.enter-container .enter-start-button {
+  width: 160px;
+  height: 60px;
+  border-radius: 0;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.enter-container .enter-start-button:hover {
+  border: 2px solid #000;
+  color: #000;
+  background-color: #fff;
+}
+
 .container {
   height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .poke-switch-wrapper {
@@ -27,6 +96,24 @@ html {
   display: inline-block;
   width: 60px;
   height: 34px;
+}
+
+.switch-mode-title::before {
+  content: url('../images/arrow.png');
+  display: block;
+  position: relative;
+  left: 12px;
+}
+
+.switch-mode-title {
+  font-size: 11px;
+  text-align: center;
+  position: relative;
+  top: 15px;
+  right: 40px;
+  transform: rotate(-30deg);
+  line-height: 1;
+  text-transform: lowercase;
 }
 
 .switch-mode input { 
@@ -97,6 +184,7 @@ input:checked + .slider:before {
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  box-shadow: 3px 3px 15px 0px rgb(152 153 156);
 }
 
 .card-item__hp {
@@ -169,6 +257,7 @@ input:checked + .slider:before {
   );
   cursor: pointer;
   margin-top: 50px;
+  transition: .3s;
 }
 
 .pokeball-btn::before {
@@ -213,4 +302,9 @@ input:checked + .slider:before {
   height: 14px;
   border-radius: 50%;
   border: 3px solid #111;
+  transition: .3s;
+}
+
+.pokeball-btn:hover .circle::before {
+  background-color: yellow;
 }

@@ -1,5 +1,5 @@
 const API_URL = "https://pokeapi.co/api/v2";
-const POKE_LIMIT = "20";
+const CARD_LIMIT = 20;
 
 const getPokemon = async ({ url }) => {
   const response = await fetch(url);
@@ -53,22 +53,15 @@ const getTemplatePokeCard = (cardData) => {
   return card;
 };
 
-const getIndexCard = (index) => {
+const getTemplateIndexCard = (index) => {
   const card = `
-    <p class="card-item__title">${index}</p>
+    <p class="card-item__title">${index + 1}</p>
   `;
 
   return card;
 }
 
-const renderPokeCard = async (isVisible) => {
-  const response = await fetch(`${API_URL}/pokemon?limit=${POKE_LIMIT}`);
-  const { results } = await response.json();
-
-  const pickedCard = pickOneCard(results);
-  const pickerCardData = await getPokemon(pickedCard);
-  const card = getTemplatePokeCard(pickerCardData);
-
+const renderCardItem = (card, isVisible) => {
   if (isVisible) {
     isVisible.innerHTML = card;
     return;
@@ -82,22 +75,23 @@ const renderPokeCard = async (isVisible) => {
   cardContainer.appendChild(cardItem);
 }
 
-const renderIndexCard = (isVisible) => {
-  const indexArray = [...Array(10).keys()];
+const generatePokeCard = async (isVisible) => {
+  const response = await fetch(`${API_URL}/pokemon?limit=${CARD_LIMIT}`);
+  const { results } = await response.json();
+
+  const pickedCard = pickOneCard(results);
+  const pickedCardData = await getPokemon(pickedCard);
+  const card = getTemplatePokeCard(pickedCardData);
+
+  renderCardItem(card, isVisible);
+}
+
+const generateIndexCard = (isVisible) => {
+  const indexArray = [...Array(CARD_LIMIT).keys()];
   const pickedCard = pickOneCard(indexArray);
-  const pickerCardData = getIndexCard(pickedCard);
+  const pickedCardData = getTemplateIndexCard(pickedCard);
 
-  if (isVisible) {
-    isVisible.innerHTML = pickerCardData;
-    return;
-  }
-
-  const cardContainer = document.querySelector(".card-container");
-  const cardItem = document.createElement("div");
-
-  cardItem.classList.add("card-item");
-  cardItem.innerHTML = pickerCardData;
-  cardContainer.appendChild(cardItem);
+  renderCardItem(pickedCardData, isVisible);
 }
 
 const renderCard = async () => {
@@ -105,11 +99,11 @@ const renderCard = async () => {
   const isVisible = document.querySelector(".card-item");
 
   if(isPokeMode) {
-    renderPokeCard(isVisible);
+    generatePokeCard(isVisible);
     return;
   }
 
-  renderIndexCard(isVisible);
+  generateIndexCard(isVisible);
   return;
 };
 
